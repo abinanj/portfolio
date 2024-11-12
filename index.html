@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Abina NJ - Personal Webpage</title>
+    <style>
+       body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                color: #333;
+                background-color: #e2f4e3; /* Pastel green background */
+                margin: 0;         padding: 0;
+                text-align: center;
+            }
+        header{
+                background-color: #a8d5ba; /* Pastel green variant */
+                color: #000; /* Black text color */
+                padding: 20px;
+                border-bottom: 4px solid #8fcf9e; /* Slightly darker pastel green */
+                position: relative;
+            }
+        header h1 {
+            margin: 0;
+            font-size: 2em;
+            transition: opacity 1s ease-in-out;
+                }
+        .language-select {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        .container {
+            padding: 20px;
+            max-width: 900px;
+            margin: auto;
+        }
+        img.profile-pic {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border: 4px solid #a8d5ba;
+            margin-top: 20px;
+            display: block; /* Ensure the image is a block element */
+            margin-left: auto;
+            margin-right: auto; /* Center the image horizontally */
+        }
+        h2, h3 {
+            color: #000; /* Black text color for headings */
+            border-bottom: 2px solid #a8d5ba;
+            display: inline-block;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+            text-align: center; /* Center text */
+        }
+        h2 {
+            font-size: 24px;
+        }
+        h3 {
+            font-size: 20px;
+            margin-top: 10px; /* Space between image and title */
+        }
+        .section {
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+            margin: 20px 0;
+            padding: 20px;
+            color: #000; /* Black text color for section content */
+            text-align: center; /* Center text in sections */
+        }
+        .contact-info {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap; /* Allows wrapping to the next line if necessary */
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .contact-info p {
+            margin: 0;
+            flex: 1; /* Allow paragraphs to grow and shrink */
+            text-align: center; /* Center text within each paragraph */
+        }
+        .contact-info a {
+            color: #006400; /* Dark green text color */
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .contact-info a:hover {
+            color: #48C9A9; /* Change the color when hovering */
+            transform: scale(1.1); /* Slightly increase the size */
+            transition: transform 0.2s, color 0.2s; /* Smooth transition */
+        }
+        .section p {
+            margin: 10px 0;
+            line-height: 1.6;
+            color: #000; /* Black text color for section content */
+        }
+        .project-item, .photo-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #eee;
+            border-radius: 12px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            text-align: center; /* Center-align content in project items */
+            display: inline-block; /* Ensure items are centered inline */
+        }
+        .project-item img, .photo-item img {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            border-radius: 12px;
+            display: block; /* Ensure the image is a block element */
+            margin-left: auto;
+            margin-right: auto; /* Center the image horizontally */
+        }
+        .project-item h3, .photo-item h3 {
+            margin-top: 10px; /* Space between image and title */
+        }
+        .horizontal-gallery, .project-gallery {
+            display: flex;
+            overflow-x: auto;
+            gap: 20px;
+            padding: 20px 0;
+            scroll-snap-type: x mandatory;
+        }
+        .horizontal-gallery::-webkit-scrollbar, .project-gallery::-webkit-scrollbar {
+            display: none; /* Hide scrollbar for a cleaner look */
+        }
+        .photo-item, .project-item {
+            scroll-snap-align: start;
+            flex: 0 0 auto;
+            width: 300px;
+        }
+        footer {
+            background-color: #a8d5ba;
+            color: #fff;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            border-top: 4px solid #8fcf9e;
+        }
+        .cute-symbol {
+            font-size: 1.5em;
+            margin: 0 5px;
+        }
+
+        /* Add media query for mobile devices */
+        @media (max-width: 600px) {
+            header {
+                padding-top: 60px; /* Add more padding to make space for the dropdown */
+            }
+
+            .language-select {
+                top: 10px;
+                right: 10px;
+                width: 100%; /* Allow the dropdown to take full width */
+                text-align: right; /* Align dropdown to the right */
+            }
+
+            .language-select select {
+                width: auto; /* Keep the dropdown's original width */
+                margin-right: 10px; /* Add space on the right */
+            }
+
+            header h1 {
+                font-size: 1.5em; /* Reduce font size on smaller screens */
+            }
+
+            .language-select label {
+                display: none; /* Optionally hide the label on smaller screens */
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1 id="name-header">Hey, I’m Abina NJ!</h1>
+        <div class="language-select">
+            <label for="language">Language: </label>
+            <select id="language" onchange="changeLanguage(this.value)">
+                <option value="en">English</option>
+                <option value="fr">French</option>
+                <option value="es">Spanish</option>
+                <option value="de">German</option>
+                <option value="ml">Malayalam</option>
+                <option value="ta">Tamil</option>
+                <option value="ru">Russian</option>
+            </select>
+        </div>
+        <p id="role-description">💻 Beginner Python Developer | 🎤 Host | 🎥 Content Creator | 🤝 TinkerHub Campus Lead JEC | 🌐 IEDC Community Lead JEC</p>
+    </header>
+    
+    <div class="container">
+        <img src="me.jpg" alt="Abina NJ" class="profile-pic">
+
+        <h2 id="about-me-title">About Me</h2>
+        <p id="about-me-1">Hi, I’m Abina NJ! I’m currently an engineering student specializing in Artificial Intelligence and Data Science. I’m also a Python developer, content creator, and host, with active roles as the Tinkerhub campus community lead and IEDC community lead at JECC. I’m dedicated to fostering technical innovation and collaborative learning through these roles.</p>
+        <p id="about-me-2">When I’m not working on tech projects or community activities, I enjoy creating engaging content and staying updated on technological advancements. My website features my projects, experiences, workshops, and events, all designed with a minimalist and pastel-themed aesthetic.</p>
+        <p id="about-me-3">Feel free to connect with me through my contact information below. Let’s stay in touch and explore new opportunities together!</p>
+        
+        <div class="section">
+            <h2 id="contact-info-title">Contact Info</h2>
+            <div class="contact-info">
+                <p id="email"> 
+                    <a href="mailto:abinajiby79@gmail.com" style="color: #63E6BE;">
+                        <i class="fa-solid fa-envelope fa-2xl"></i>
+                    </a>
+                </p>
+                <p id="instagram">
+                    <a href="https://www.instagram.com/ft.abinaaaaa/?hl=en" target="_blank" style="color: #63E6BE;">
+                        <i class="fa-brands fa-instagram fa-2xl"></i>
+                    </a>
+                </p>
+                <p id="youtube"> 
+                    <a href="https://www.youtube.com/@Ft.Abinaa" target="_blank" style="color: #63E6BE;">
+                        <i class="fa-brands fa-youtube fa-2xl"></i>
+                    </a>
+                </p>
+                <p id="linkedin"> 
+                    <a href="https://www.linkedin.com/in/abina-n-j-4757ab213/" target="_blank" style="color: #63E6BE;">
+                        <i class="fa-brands fa-linkedin fa-2xl"></i>
+                    </a>
+                </p>
+            </div>
+        </div>
+        
+
+        <div class="section">
+            <h2 id="projects-title">Projects</h2>
+            
+            <div class="project-gallery">
+                <div class="project-item">
+                    <img src="lost2found.jpeg" alt="Lost 2 Found Project">
+                    <h3 id="project-1-title">Lost 2 Found</h3>
+                    <p id="project-1-description">Lost2Found is a web application designed to facilitate the process of finding and returning lost items to their rightful owners. The app serves as a centralized platform where users can report lost items they have found or search for items they have lost.</p>
+                </div>
+
+                <div class="project-item">
+                    <img src="cute-romantic-couple-on-date-vector.jpg" alt="Dating App Project">
+                    <h3 id="project-2-title">Dating App</h3>
+                    <p id="project-2-description">description</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 id="experience-title">Experience</h2>
+            <div class="project-gallery">
+                <div class="project-item">
+                    <img src="iedc.jpg" alt="IEDC Experience">
+                    <h3 id="experience-1-title">IEDC</h3>
+                    <p id="experience-1-description">I serve as the campus community lead for IEDC at JECC, a role that involves organizing events, fostering innovation, and promoting entrepreneurial activities among students.</p>
+                </div>
+
+                <div class="project-item">
+                    <img src="thcamp.jpg" alt="TinkerHub Experience">
+                    <h3 id="experience-2-title">TinkerHub</h3>
+                    <p id="experience-2-description">As the Tinkerhub campus lead, I facilitate technical learning and collaboration through various workshops, hackathons, and community initiatives.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 id="events-title">Events</h2>
+            <p id="events-description">Here are some snapshots from events I've attended:</p>
+            
+            <div class="horizontal-gallery">
+                <div class="photo-item">
+                    <img src="unionday.jpg" alt="Event 1">
+                    <h3 id="event-1-title">UNION DAY 2023</h3>
+                    <p id="event-1-description">Union day host with Anshias Santo</p>
+                </div>
+
+                <div class="photo-item">
+                    <img src="neophyte2.jpg" alt="Event 2">
+                    <h3 id="event-2-title">NEOPHYTE HACKATHON 1.0</h3>
+                    <p id="event-2-description">Neophyte was a hackathon held at Jyothi Engineering College in collaboration with AIDA, TinkerHub, and IEDC. We aced the second prize in the event.</p>
+                </div>
+
+                <div class="photo-item">
+                    <img src="neophyte3.jpg" alt="Event 3">
+                    <h3 id="event-3-title">NEOPHYTE HACKATHON 1.0</h3>
+                    <p id="event-3-description">Project presentation of Neophyte hackathon.</p>
+                </div>
+
+                <div class="photo-item">
+                    <img src="iedc2.jpeg" alt="Event 4">
+                    <h3 id="event-4-title">IEDC AWIL</h3>
+                    <p id="event-4-description">I was the IEDC AWIL 2023-2024.</p>
+                </div>
+
+                <div class="photo-item">
+                    <img src="artsday2.jpg" alt="Event 5">
+                    <h3 id="event-5-title">ARTS DAY</h3>
+                    <p id="event-5-description">I hosted ARTS DAY at Jyothi Engineering College 2024.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2024 Abina NJ. All rights reserved.
+    </footer>
+
+    <script>
+        const translations = {
+            en: {
+                nameHeader: "Hey, I’m Abina NJ!",
+                roleDescription: "💻 Beginner Python Developer | 🎤 Host | 🎥 Content Creator | 🤝 TinkerHub Campus Lead JEC | 🌐 IEDC Community Lead JEC",
+                aboutMeTitle: "About Me",
+                aboutMe1: "Hi, I’m Abina NJ! I’m currently an engineering student specializing in Artificial Intelligence and Data Science. I’m also a Python developer, content creator, and host, with active roles as the Tinkerhub campus community lead and IEDC community lead at JECC. I’m dedicated to fostering technical innovation and collaborative learning through these roles.",
+                aboutMe2: "When I’m not working on tech projects or community activities, I enjoy creating engaging content and staying updated on technological advancements. My website features my projects, experiences, workshops, and events, all designed with a minimalist and pastel-themed aesthetic.",
+                aboutMe3: "Feel free to connect with me through my contact information below. Let’s stay in touch and explore new opportunities together!",
+                contactInfoTitle: "Contact Info",
+                email: "📧 Email: <a href='mailto:abinajiby79@gmail.com'>Mail ID</a>",
+                instagram: "📸 Instagram: <a href='https://www.instagram.com/ft.abinaaaaa/?hl=en' target='_blank'>Insta Profile</a>",
+                youtube: "🎥 YouTube: <a href='https://www.youtube.com/@Ft.Abinaa' target='_blank'>YT Channel</a>",
+                linkedin: "🔗 LinkedIn: <a href='https://www.linkedin.com/in/abina-n-j-4757ab213/' target='_blank'>LinkedIn Profile</a>",
+                projectsTitle: "Projects",
+                project1Title: "Lost 2 Found",
+                project1Description: "Lost2Found is a web application designed to facilitate the process of finding and returning lost items to their rightful owners. The app serves as a centralized platform where users can report lost items they have found or search for items they have lost.",
+                project2Title: "Dating App",
+                project2Description: "description",
+                experienceTitle: "Experience",
+                experience1Title: "IEDC",
+                experience1Description: "I serve as the campus community lead for IEDC at JECC, a role that involves organizing events, fostering innovation, and promoting entrepreneurial activities among students.",
+                experience2Title: "TinkerHub",
+                experience2Description: "As the Tinkerhub campus lead, I facilitate technical learning and collaboration through various workshops, hackathons, and community initiatives.",
+                eventsTitle: "Events",
+                eventsDescription: "Here are some snapshots from events I've attended:",
+                event1Title: "UNION DAY 2023",
+                event1Description: "Union day host with Anshias Santo",
+                event2Title: "NEOPHYTE HACKATHON 1.0",
+                event2Description: "Neophyte was a hackathon held at Jyothi Engineering College in collaboration with AIDA, TinkerHub, and IEDC. We aced the second prize in the event.",
+                event3Title: "NEOPHYTE HACKATHON 1.0",
+                event3Description: "Project presentation of Neophyte hackathon.",
+                event4Title: "IEDC AWIL",
+                event4Description: "I was the IEDC AWIL 2023-2024.",
+                event5Title: "ARTS DAY",
+                event5Description: "I hosted ARTS DAY at Jyothi Engineering College 2024."
+            },
+            // Add other language translations here...
+        };
+        
+
+        function changeLanguage(lang) {
+            document.getElementById("name-header").innerText = translations[lang].nameHeader;
+            document.getElementById("role-description").innerText = translations[lang].roleDescription;
+            document.getElementById("about-me-title").innerText = translations[lang].aboutMeTitle;
+            document.getElementById("about-me-1").innerText = translations[lang].aboutMe1;
+            document.getElementById("about-me-2").innerText = translations[lang].aboutMe2;
+            document.getElementById("about-me-3").innerText = translations[lang].aboutMe3;
+            document.getElementById("contact-info-title").innerText = translations[lang].contactInfoTitle;
+            document.getElementById("email").innerHTML = translations[lang].email;
+            document.getElementById("instagram").innerHTML = translations[lang].instagram;
+            document.getElementById("youtube").innerHTML = translations[lang].youtube;
+            document.getElementById("linkedin").innerHTML = translations[lang].linkedin;
+            document.getElementById("projects-title").innerText = translations[lang].projectsTitle;
+            document.getElementById("project-1-title").innerText = translations[lang].project1Title;
+            document.getElementById("project-1-description").innerText = translations[lang].project1Description;
+            document.getElementById("project-2-title").innerText = translations[lang].project2Title;
+            document.getElementById("project-2-description").innerText = translations[lang].project2Description;
+            document.getElementById("experience-title").innerText = translations[lang].experienceTitle;
+            document.getElementById("experience-1-title").innerText = translations[lang].experience1Title;
+            document.getElementById("experience-1-description").innerText = translations[lang].experience1Description;
+            document.getElementById("experience-2-title").innerText = translations[lang].experience2Title;
+            document.getElementById("experience-2-description").innerText = translations[lang].experience2Description;
+            document.getElementById("events-title").innerText = translations[lang].eventsTitle;
+            document.getElementById("events-description").innerText = translations[lang].eventsDescription;
+            document.getElementById("event-1-title").innerText = translations[lang].event1Title;
+            document.getElementById("event-1-description").innerText = translations[lang].event1Description;
+            document.getElementById("event-2-title").innerText = translations[lang].event2Title;
+            document.getElementById("event-2-description").innerText = translations[lang].event2Description;
+            document.getElementById("event-3-title").innerText = translations[lang].event3Title;
+            document.getElementById("event-3-description").innerText = translations[lang].event3Description;
+            document.getElementById("event-4-title").innerText = translations[lang].event4Title;
+            document.getElementById("event-4-description").innerText = translations[lang].event4Description;
+            document.getElementById("event-5-title").innerText = translations[lang].event5Title;
+            document.getElementById("event-5-description").innerText = translations[lang].event5Description;
+        }
+    </script>
+</body>
+</html>
